@@ -1,9 +1,4 @@
-﻿@using HospitalManagmentSystem.Common.Enums
-@model HospitalManagmentSystem.ViewModels.UserViewModel;
-
-@{
-    ViewData["Title"] = "Create user";
-}
+﻿@model HospitalManagmentSystem.ViewModels.UserViewModel
 
 <!DOCTYPE html>
 
@@ -12,11 +7,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create</title>
+    <title>Registration</title>
 </head>
 
 <body>
-    <form asp-controller="User" asp-action="Create" method="post">
+    <form asp-controller="Authentication" asp-action="Registration" method="post">
         <div class="form-group">
             <label class="control-label">Login: </label>
             @Html.TextBoxFor(x => x.Login, new { size = 32 })
@@ -30,12 +25,6 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label">Role: </label>
-            @Html.DropDownListFor(x => x.Role,
-                new SelectList(Enum.GetNames(typeof(Role))))
-        </div>
-
-        <div class="form-group">
             <label class="control-label">Password: </label>
             @Html.TextBoxFor(x => x.Password, new { size = 28 })
             <span asp-validation-for="Password" class="text-danger"></span>
@@ -43,11 +32,11 @@
 
         <div class="form-group">
             <label class="control-label">Confirm password: </label>
-            @Html.TextBoxFor(x => x.ConfirmPassword, new { size = 28 })
+            @Html.TextBoxFor(x => x.ConfirmPassword, new { size = 19 })
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
 
-        <input type="submit" value="Create">
+        <input type="submit" value="Registration">
     </form>
 </body>
 </html>

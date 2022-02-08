@@ -1,0 +1,32 @@
+﻿@model HospitalManagmentSystem.ViewModels.UserLoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+</head>
+
+<body>
+    <form asp-controller="Authentication" asp-action="Login" method="post">
+        <div class="form-group text-center">
+            <label>Login: </label>
+            @Html.EditorFor(x => x.Login)
+        </div>
+        <div class="form-group text-center" style="margin-right: 2%">
+            <label>Password: </label>
+            @Html.EditorFor(x => x.Password)
+        </div>
+
+        <div class="text-center">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</body>
+</html>
