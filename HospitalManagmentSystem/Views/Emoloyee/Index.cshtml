@@ -1,13 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@using HospitalManagmentSystem.Common.Enums
+@model HospitalManagmentSystem.ViewModels.EmployeeViewModel;
 
-<html>
+@{
+    ViewData["Title"] = "Create employee";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>Create</title>
 </head>
+
 <body>
-    <div>
-        @RenderBody()
-    </div>
+<form asp-controller="Employee" asp-action="Create" method="post">
+
+</form>
+
 </body>
 </html>
