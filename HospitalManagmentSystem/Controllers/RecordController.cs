@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Globalization;
 using HospitalManagmentSystem.BusinessLogic.Interfaces;
-using HospitalManagmentSystem.Common.Enums;
 using HospitalManagmentSystem.Common.Models;
 using HospitalManagmentSystem.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 
 namespace HospitalManagmentSystem.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class RecordController : Controller
     {
         private readonly IRecordService _recordService;
