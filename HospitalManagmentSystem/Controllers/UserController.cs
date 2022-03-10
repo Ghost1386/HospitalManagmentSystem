@@ -18,16 +18,16 @@ namespace HospitalManagmentSystem.Controllers
             _authService = authService;
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         public IActionResult Index()
         {
             return View(_userService.GetUsers());
         }
         
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(UserViewModel userViewModel)

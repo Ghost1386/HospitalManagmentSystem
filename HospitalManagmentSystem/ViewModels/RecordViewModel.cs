@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using HospitalManagmentSystem.Common.Enums;
 
 namespace HospitalManagmentSystem.ViewModels
@@ -29,6 +30,6 @@ namespace HospitalManagmentSystem.ViewModels
         public string DateAndTime { get; set; }
 
         [Required]
-        public RecordStatus RecordStatus { get; set; }
+        public int RecordStatus { get; set; }
     }
 }

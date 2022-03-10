@@ -1,4 +1,5 @@
 ﻿using System;
+using HospitalManagmentSystem.Common.Enums;
 
 namespace HospitalManagmentSystem.Common.Models
 {
