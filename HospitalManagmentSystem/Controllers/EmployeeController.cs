@@ -3,7 +3,6 @@ using HospitalManagmentSystem.Common.Models;
 using HospitalManagmentSystem.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Serilog;
 
 namespace HospitalManagmentSystem.Controllers
@@ -17,14 +16,14 @@ namespace HospitalManagmentSystem.Controllers
             _employeeService = employeeService;
         }
 
-        /*public IActionResult Create()
+        public IActionResult Create()
         {
             return View(new EmployeeViewModel());
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> Create(EmployeeViewModel employeeViewModel)
+        public IActionResult Create(EmployeeViewModel employeeViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -44,21 +43,26 @@ namespace HospitalManagmentSystem.Controllers
         
         public IActionResult Index()
         {
-            List<EmployeeViewModel> employeeViewModels = new List<EmployeeViewModel>();
-
-            foreach (Employee employee in _employeeService.GetAll())
+            List<EmployeeViewModel> employeeViewModel = new List<EmployeeViewModel>();
+            
+            if (ModelState.IsValid)
             {
-                employeeViewModels.Add(new EmployeeViewModel
+                foreach (Employee employee in _employeeService.GetEmployees())
                 {
-                    Id = employee.Id,
-                    Name = employee.Name,
-                    SurName = employee.SurName,
-                    PhoneNumber = employee.PhoneNumber,
-                    Department = employee.Department
-                });
+                    employeeViewModel.Add(new EmployeeViewModel
+                    {
+                        Id = employee.Id,
+                        Name = employee.Name,
+                        SurName = employee.SurName,
+                        PhoneNumber = employee.PhoneNumber,
+                        Department = employee.Department
+                    });
+                }
+
+                return RedirectToAction(nameof(Index));
             }
 
-            return PartialView(employeeViewModels);
-        }*/
+            return View();
+        }
     }
 }
