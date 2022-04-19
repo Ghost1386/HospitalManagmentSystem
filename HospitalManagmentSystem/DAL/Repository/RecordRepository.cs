@@ -56,7 +56,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "SELECT * FROM Record WHERE Id = @Id";
+                    "SELECT * FROM Records WHERE Id = @Id";
 
                 var command = new SqlCommand(query, connection);
 
@@ -95,7 +95,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "DELETE FROM Record WHERE Id=@Id";
+                    "DELETE FROM Records WHERE Id=@Id";
 
                 var command = new SqlCommand(query, connection);
 
@@ -115,7 +115,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "INSERT INTO Record (Email, Login, Password, Role) VALUES (@Email, @Login, @Password, @Role)";
+                    "INSERT INTO Records (Email, Login, Password, Role) VALUES (@Email, @Login, @Password, @Role)";
 
                 var command = new SqlCommand(query, connection);
 
@@ -152,7 +152,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "UPDATE Record SET Email=@Email, Login=@Login, Role=@Role WHERE Id=@Id";
+                    "UPDATE Records SET Email=@Email, Login=@Login, Role=@Role WHERE Id=@Id";
 
                 var command = new SqlCommand(query, connection);
 

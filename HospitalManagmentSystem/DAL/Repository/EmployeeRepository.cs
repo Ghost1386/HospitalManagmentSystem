@@ -10,6 +10,7 @@ namespace HospitalManagmentSystem.DAL.Repository
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly ConnectionSettings _connectionSettings;
+        
         public EmployeeRepository(ConnectionSettings connectionSettings)
         {
             _connectionSettings = connectionSettings;
@@ -21,7 +22,7 @@ namespace HospitalManagmentSystem.DAL.Repository
 
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
-                var query = "SELECT * FROM Employee";
+                var query = "SELECT * FROM Employees";
 
                 var command = new SqlCommand(query, connection);
 
@@ -54,7 +55,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "SELECT * FROM Employee WHERE Id = @Id";
+                    "SELECT * FROM Employees WHERE Id = @Id";
 
                 var command = new SqlCommand(query, connection);
 
@@ -92,7 +93,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "DELETE FROM Employee WHERE Id=@Id";
+                    "DELETE FROM Employees WHERE Id=@Id";
 
                 var command = new SqlCommand(query, connection);
 
@@ -112,7 +113,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "INSERT INTO Employee (Name, SurName, PhoneNumber, Department) VALUES (@Name, @SurName, @PhoneNumber, @Department)";
+                    "INSERT INTO Employees (Name, SurName, PhoneNumber, Department) VALUES (@Name, @SurName, @PhoneNumber, @Department)";
 
                 var command = new SqlCommand(query, connection);
 

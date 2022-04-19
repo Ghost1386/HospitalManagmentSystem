@@ -93,7 +93,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "DELETE FROM AppUsers WHERE Id=@Id";
+                    "DELETE FROM Users WHERE Id=@Id";
 
                 var command = new SqlCommand(query, connection);
 
@@ -113,7 +113,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "INSERT INTO AppUsers (Email, Login, Password, Role) VALUES (@Email, @Login, @Password, @Role)";
+                    "INSERT INTO Users (Email, Login, Password, Role) VALUES (@Email, @Login, @Password, @Role)";
 
                 var command = new SqlCommand(query, connection);
 
