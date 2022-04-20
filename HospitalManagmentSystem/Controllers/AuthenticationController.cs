@@ -25,11 +25,6 @@ namespace HospitalManagmentSystem.Controllers
 
         public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("HomePage", "Home");
-            }
-
             return View();
         }
 
