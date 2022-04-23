@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="~/css/Home.css" />
 </head>
 <body>
+<form>
     
+</form>
 
     <header class="header">
 
@@ -29,27 +31,22 @@
                     <p class="info__item-text">0123 Some Place</p>
                 </div>
             </div>
-
-
-
         </div>
 
 
         <div class="background">
-
             <div class="menu__row">
                 <ul class="menu__list">
                     <li class="menu__item">About us</li>
-                    <li class="menu__item">Services</li>
                     <li class="menu__item">Doctors</li>
                     <li class="menu__item">News</li>
                     <li class="menu__item">Contact</li>
-                    <li class="menu__item"><a href="../Views/Authentication/Login.cshtml">Login</a></li>
-                    <li class="menu__item"><a href="/Views/Authentication/Registration.cshtml">Registration</a></li>
+                    <li class="menu__item"><a asp-area="" asp-controller="Record" asp-action="Create">Record</a></li>
+                    <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Login">Login</a></li>
+                    <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Registration">Registration</a></li>
                 </ul>
             </div>
         </div>
-
     </header>
 
     <main class="main">
