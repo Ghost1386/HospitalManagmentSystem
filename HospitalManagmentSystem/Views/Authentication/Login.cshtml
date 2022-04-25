@@ -1,28 +1,39 @@
 ﻿@model HospitalManagmentSystem.ViewModels.UserLoginViewModel
 
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="~/css/Login.css" />
 </head>
-
 <body>
-<form asp-controller="Authentication" asp-action="Login" method="post">
+    <div class="login-row">
+<div class="login-item">
+    <h1 class="title">Meddical</h1>
+    <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
+</div>
+ <form asp-controller="Authentication" asp-action="Login" method="post" class="login-item">
+     <p class="group-text">Login:</p>
     <div class="form-group">
-        <label class="control-label">Login: </label>
+
         @Html.TextBoxFor(x => x.Login)
     </div>
-
+    <p class="group-text">Password:</p>
     <div class="form-group">
-        <label class="control-label">Password: </label>
+        <input type="text" class="control-input" /> 
         @Html.TextBoxFor(x => x.Password)
     </div>
-
-    <input type="submit" value="Login">
+    <button >Submit</button>
+    
+    
 </form>
-</body>
+    </div>
+    
+   
+    </body>
 </html>

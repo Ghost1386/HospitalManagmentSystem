@@ -126,7 +126,57 @@ span {
     font-size: 22px;
     line-height: 24px;
     margin-bottom: 22px;
+    transition: 0.5s;
 }
+
+    .menu__item:hover {
+        color: #159EEC;
+        cursor:pointer;
+    }
+
+.dropbtn {
+    
+}
+
+/* Контейнер <div> - необходим для размещения выпадающего содержимого */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+/* Выпадающее содержимое (скрыто по умолчанию) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+}
+
+    /* Ссылки внутри выпадающего списка */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition:0.5s;
+    }
+
+        /* Изменение цвета выпадающих ссылок при наведении курсора */
+        .dropdown-content a:hover {
+            background-color: #159EEC;
+        }
+
+/* Показать выпадающее меню при наведении курсора */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
 
 .background {
     background-color: #1F2B6C;
@@ -345,6 +395,8 @@ span {
     padding-top: 30px;
 }
 
+
+
 .contact__row-item {
     background-color: #BFD2F8;
     border-radius: 20px;
@@ -391,6 +443,7 @@ span {
 .contact__row {
     display:flex;
     align-items:center;
+    justify-content: center;
     gap:20px;
 }
 

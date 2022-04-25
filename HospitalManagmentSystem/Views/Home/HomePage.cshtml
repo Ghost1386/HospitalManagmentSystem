@@ -37,14 +37,21 @@
         <div class="background">
             <div class="menu__row">
                 <ul class="menu__list">
-                    <li class="menu__item">About us</li>
-                    <li class="menu__item">Doctors</li>
-                    <li class="menu__item">News</li>
-                    <li class="menu__item">Contact</li>
-                    <li class="menu__item"><a asp-area="" asp-controller="Record" asp-action="Create">Record</a></li>
+                    <li class="menu__item"><a href="#about">About us</a></li>
+                    <li class="menu__item"><a href="#doctors">Doctors</a></li>
+                    <li class="menu__item"><a href="#contacts">Contact</a></li>
+                    <li class="menu__item"> <div class="dropdown">
+  <button class="dropbtn"><a asp-area="" asp-controller="Record" asp-action="Create">Record</a></button>
+  <div class="dropdown-content">
+    <a asp-area="" asp-controller="Record" asp-action="Create">Create</a>
+    <a asp-area="" asp-controller="Record" asp-action="Edit">Edit</a>
+   <a asp-area="" asp-controller="Record" asp-action="Delete">Delete</a>
+  </div>
+</div></li>
                     <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Login">Login</a></li>
                     <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Registration">Registration</a></li>
                 </ul>
+               
             </div>
         </div>
     </header>
@@ -60,7 +67,7 @@
             </div>
 
         </section>
-        <section class="welcome">
+        <section class="welcome" id="about">
             <div class="welcome__text">
                 <p class="welcome__subtitle">Welcome to Meddical</p>
                 <h2 class="welcome__title">A Great Place to Receive Care</h2>
@@ -93,7 +100,7 @@
 
             </div>
         </section>
-        <section class="ourdoctors">
+        <section class="ourdoctors" id="doctors">
             <div class="ourdoctors__text">
                 <p class="ourdoctors__subtitle">Trusted Care</p>
                 <h2 class="ourdoctors__title">Our Doctors</h2>
@@ -139,7 +146,7 @@
         </section>
 
 
-        <section class="contact">
+        <section class="contact" id="contacts">
             <p class="contact__subtitle">Get in touch</p>
             <h2 class="contact__title">Contact</h2>
             <div class="contact__row">
@@ -203,7 +210,7 @@
             </div>
         </div>
         <div class="footer__row2">
-            <p class="row2__text">© 2021 Hospital’s name All Rights Reserved by Egor Novik</p>
+            <p class="row2__text">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
             <ul class="row2__list">
                 <li class="row2__item"><img src="/img/footer1-icon.svg" alt="Alternate Text" /></li>
                 <li class="row2__item"><img src="/img/footer2-icon.svg" alt="Alternate Text" /></li>

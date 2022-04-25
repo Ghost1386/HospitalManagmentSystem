@@ -5,38 +5,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
+    <link rel="stylesheet" href="~/css/Registration.css" />
 </head>
 
 <body>
-    <form asp-controller="Authentication" asp-action="Registration" method="post">
+     <div class="login-row">
+<div class="login-item">
+    <h1 class="title">Meddical</h1>
+    <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
+</div>
+    <form asp-controller="Authentication" asp-action="Registration" method="post" class="login-item">
+         <p class="group-text">Login:</p>
         <div class="form-group">
-            <label class="control-label">Login: </label>
+            <input type="text" class="control-input" />
             @Html.TextBoxFor(x => x.Login, new { size = 32 })
             <span asp-validation-for="Login" class="text-danger"></span>
         </div>
-
+        <p class="group-text">Email:</p>
         <div class="form-group">
-            <label class="control-label">Email: </label>
+             <input type="text" class="control-input" />
             @Html.TextBoxFor(x => x.Email, new { size = 32 })
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-
+        <p class="group-text">Password:</p>
         <div class="form-group">
-            <label class="control-label">Password: </label>
+             <input type="text" class="control-input" />
             @Html.TextBoxFor(x => x.Password, new { size = 28 })
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
-
+        <p class="group-text">Confirm password:</p>
         <div class="form-group">
-            <label class="control-label">Confirm password: </label>
+             <input type="text" class="control-input" />
             @Html.TextBoxFor(x => x.ConfirmPassword, new { size = 19 })
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
 
-        <input type="submit" value="Registration">
+        <button >Submit</button>
     </form>
+    </div>
 </body>
 </html>
+
+f
