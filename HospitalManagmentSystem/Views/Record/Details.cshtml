@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model HospitalManagmentSystem.ViewModels.RecordViewModel;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -7,7 +9,14 @@
 </head>
 <body>
     <div>
-        @RenderBody()
+        <form form asp-controller="Record" asp-action="Details" class="login-item">
+            <h2>Record Info</h2>
+            <p> User Id: @Html.ViewData.Model.UserId</p>
+            <p> Department: @Html.ViewData.Model.Department</p>
+            <p> Employee Id: @Html.ViewData.Model.EmployeeId</p>
+            <p> Date And Time: @Html.ViewData.Model.DateAndTime</p>
+            <p> Record Status: @Html.ViewData.Model.RecordStatus</p>
+        </form>
     </div>
 </body>
 </html>

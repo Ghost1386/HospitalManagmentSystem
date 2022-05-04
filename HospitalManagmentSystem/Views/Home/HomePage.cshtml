@@ -41,13 +41,13 @@
                     <li class="menu__item"><a href="#doctors">Doctors</a></li>
                     <li class="menu__item"><a href="#contacts">Contact</a></li>
                     <li class="menu__item"> <div class="dropdown">
-  <button class="dropbtn"><a asp-area="" asp-controller="Record" asp-action="Create">Record</a></button>
-  <div class="dropdown-content">
-    <a asp-area="" asp-controller="Record" asp-action="Create">Create</a>
-    <a asp-area="" asp-controller="Record" asp-action="Edit">Edit</a>
-   <a asp-area="" asp-controller="Record" asp-action="Delete">Delete</a>
-  </div>
-</div></li>
+                        <button class="dropbtn"><a>Record</a></button>
+                        <div class="dropdown-content">
+                            <a asp-area="" asp-controller="Record" asp-action="Create" method="post">Create</a>
+                            <a asp-area="" asp-controller="Record" asp-action="Edit">Edit</a>
+                            <a asp-area="" asp-controller="Record" asp-action="Details">Delete</a>
+                        </div>
+                    </div></li>
                     <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Login">Login</a></li>
                     <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Registration">Registration</a></li>
                 </ul>

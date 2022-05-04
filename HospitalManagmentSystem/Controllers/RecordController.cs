@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Employee")]
     public class RecordController : Controller
     {
         private readonly IRecordService _recordService;
@@ -18,6 +17,7 @@ namespace HospitalManagmentSystem.Controllers
             _recordService = recordService;
         }
         
+        [HttpPost]
         public IActionResult Index()
         {
             return View(_recordService.GetRecord());
@@ -27,7 +27,9 @@ namespace HospitalManagmentSystem.Controllers
         {
             return View();
         }
-
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(RecordViewModel recordViewModel)
         {
             if (ModelState.IsValid)
@@ -60,7 +62,9 @@ namespace HospitalManagmentSystem.Controllers
                 RecordStatus = record.RecordStatus
             });
         }
-
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(RecordViewModel recordViewModel, int id)
         {
             if (ModelState.IsValid)
@@ -86,6 +90,27 @@ namespace HospitalManagmentSystem.Controllers
             {
                 return View();
             }
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _recordService.Delete(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+        
+        public IActionResult Details(int id)
+        {
+            Record record = _recordService.Get(id);
+
+            return View(new RecordViewModel()
+            {
+                UserId = record.UserId,
+                Department = record.Department,
+                EmployeeId = record.EmployeeId,
+                DateAndTime = record.DateAndTime.ToString(CultureInfo.CurrentCulture),
+                RecordStatus = record.RecordStatus
+            });
         }
     }
 }

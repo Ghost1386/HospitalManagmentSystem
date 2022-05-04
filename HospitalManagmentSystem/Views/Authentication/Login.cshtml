@@ -18,22 +18,18 @@
     <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
 </div>
  <form asp-controller="Authentication" asp-action="Login" method="post" class="login-item">
-     <p class="group-text">Login:</p>
     <div class="form-group">
-
-        @Html.TextBoxFor(x => x.Login)
+         <label >Login: </label>
+        @Html.EditorFor(x => x.Login)
+        <span asp-validation-for="Login" class="text-danger"></span>
     </div>
-    <p class="group-text">Password:</p>
     <div class="form-group">
-        <input type="text" class="control-input" /> 
+        <label>Password: </label>
         @Html.TextBoxFor(x => x.Password)
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
-    <button >Submit</button>
-    
-    
-</form>
+    <button type="submit">Submit</button>
+ </form>
     </div>
-    
-   
-    </body>
+</body>
 </html>

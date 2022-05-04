@@ -3,7 +3,6 @@ using HospitalManagmentSystem.Common.Models;
 using HospitalManagmentSystem.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Serilog;
 
 namespace HospitalManagmentSystem.Controllers
 {

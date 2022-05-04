@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using HospitalManagmentSystem.BusinessLogic.Interfaces;
@@ -66,25 +65,15 @@ namespace HospitalManagmentSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Registration(UserViewModel userViewModel)
         {
-            if (ModelState.IsValid)
+            _userService.Create(new User
             {
-                if (_authService.IsRegistration(userViewModel.Login, userViewModel.Email))
-                {
-                    return View(userViewModel);
-                }
+                Email = userViewModel.Email,
+                Login = userViewModel.Login,
+                Password = userViewModel.Password,
+                Role = 0
+            });
 
-                _userService.Create(new User
-                {
-                    Email = userViewModel.Email,
-                    Login = userViewModel.Login,
-                    Password = userViewModel.Password,
-                    Role = 0
-                });
-
-                return RedirectToAction(nameof(Login));
-            }
-
-            return View(userViewModel);
+            return RedirectToAction(nameof(Login));
         }
 
         [Authorize]

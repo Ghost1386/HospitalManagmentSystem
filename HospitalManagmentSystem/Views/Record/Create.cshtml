@@ -1,13 +1,47 @@
-﻿<!DOCTYPE html>
+﻿@using HospitalManagmentSystem.Common.Enums
+@model HospitalManagmentSystem.ViewModels.RecordViewModel;
+
+<!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
     <div>
-        @RenderBody()
+        <form form asp-controller="Record" asp-action="Create" method="post">
+                    <div class="form-group">
+                        <label class="control-label">UserId: </label>
+                        @Html.TextBoxFor(x => x.UserId, new { size = 32 })
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+            
+                    <div class="form-group">
+                        <label class="control-label">Department: </label>
+                        @Html.TextBoxFor(x => x.Department, new { size = 32 })
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+            
+                    <div class="form-group">
+                        <label class="control-label">EmployeeId: </label>
+                        @Html.TextBoxFor(x => x.EmployeeId, new { size = 32 })
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">DateAndTime: </label>
+                        @Html.TextBoxFor(x => x.DateAndTime, new { size = 28 })
+                        <span asp-validation-for="DateAndTime" class="text-danger"></span>
+                    </div>
+            
+                    <div class="form-group">
+                        <label class="control-label">RecordStatus: </label>
+                        @Html.DropDownListFor(x => x.RecordStatus, 
+                        new SelectList(Enum.GetNames(typeof(RecordStatus))))
+                    </div>
+            
+                    <input type="submit" value="Create">
+        </form>
     </div>
 </body>
 </html>
