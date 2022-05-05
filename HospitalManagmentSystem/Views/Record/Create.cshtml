@@ -6,9 +6,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/RecordCreate.css" />
 </head>
 <body>
-    <div>
+    <div class="create-row">
+        <div class="create-item">
+    <h1 class="title">Meddical</h1>
+    <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
+</div>
         <form form asp-controller="Record" asp-action="Create" method="post">
                     <div class="form-group">
                         <label class="control-label">UserId: </label>
@@ -40,8 +45,9 @@
                         new SelectList(Enum.GetNames(typeof(RecordStatus))))
                     </div>
             
-                    <input type="submit" value="Create">
+                    <input class="button" type="submit" value="Create">
         </form>
+        
     </div>
 </body>
 </html>
