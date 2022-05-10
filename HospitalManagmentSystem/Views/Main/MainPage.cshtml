@@ -1,16 +1,29 @@
-﻿@{
-    Layout = null;
-}
+﻿@using HospitalManagmentSystem.Common.Models
+@model HospitalManagmentSystem.ViewModels.RecordViewModel;
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>title</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/RecordEdit.css" />
 </head>
 <body>
-<div>
-      
+<div class="edit-row">
+    <div class="edit-item">
+        <h1 class="title">Meddical</h1>
+        <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
+    </div>
+    <form>
+        <div class="form-group">
+            <label class="control-label">Record Id: </label>
+            @Html.TextBoxFor(x => x.Id, new {size = 32})
+           
+            <a asp-area="" asp-controller="Record" asp-action="Edit"></a>
+        </div>
+        <input class="button" type="submit" value="Search">
+    </form>
 </div>
 </body>
 </html>

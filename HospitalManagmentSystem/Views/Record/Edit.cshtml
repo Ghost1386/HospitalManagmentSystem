@@ -1,4 +1,4 @@
-﻿@using HospitalManagmentSystem.Common.Enums
+@using HospitalManagmentSystem.Common.Enums
 @model HospitalManagmentSystem.ViewModels.RecordViewModel;
 
 <!DOCTYPE html>
@@ -7,38 +7,57 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/RecordEdit.css" />
 </head>
 <body>
-<form asp-controller="Record" asp-action="Edit" method="post">
-    <div class="form-group">
-        <label class="control-label">UserId: </label>
-        @Html.TextBoxFor(x => x.UserId, new {size = 32})
-        <span asp-validation-for="UserId" class="text-danger"></span>
+<div class="edit-row">
+    <div class="edit-item">
+        <h1 class="title">Meddical</h1>
+        <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
     </div>
-
-    <div class="form-group">
-        <label class="control-label">Department: </label>
-        @Html.TextBoxFor(x => x.Department, new {size = 32})
-        <span asp-validation-for="Department" class="text-danger"></span>
+    <div class="form-row">
+        <form asp-controller="Record" asp-action="Edit" method="get">
+                <div class="form-group">
+                    <label class="control-label">Record Id: </label>
+                    @Html.TextBoxFor(x => x.Id, new {size = 32})
+                </div>
+        
+                <input class="button" type="submit" value="Search">
+            </form><form asp-controller="Record" asp-action="Edit" method="post">
+                           
+                          <div class="form-group">
+                                   <label class="control-label">UserId: </label>
+                                   @Html.TextBoxFor(x => x.UserId, new {size=32})
+                               </div>
+                           
+                           <div class="form-group">
+                                                   <label class="control-label">Department: </label>
+                                                   @Html.DropDownListFor(x => x.Department,
+                                                       new SelectList(Enum.GetNames(typeof(Department))))
+                                               </div>
+                           
+                           <div class="form-group">
+                                           <label class="control-label">EmployeeId: </label>
+                                           @Html.TextBoxFor(x => x.EmployeeId, new {size=32})
+                                       </div>
+                                   
+                                       <div class="form-group">
+                                           <label class="control-label">Date: </label>
+                                           @Html.TextBoxFor(x => x.DateAndTime, new {size=32})
+                                       </div>
+                           
+                           <div class="form-group">
+                                           <label class="control-label">Record Status: </label>
+                                           @Html.DropDownListFor(x => x.RecordStatus,
+                                               new SelectList(Enum.GetNames(typeof(RecordStatus))))
+                                       </div>
+                   
+                           <input class="button" type="submit" value="Edit">
+                       </form>
     </div>
-    <div class="form-group">
-            <label class="control-label">EmployeeId: </label>
-            @Html.TextBoxFor(x => x.EmployeeId, new {size = 32})
-            <span asp-validation-for="EmployeeId" class="text-danger"></span>
-        </div>
     
-    <div class="form-group">
-        <label class="control-label">DateAndTime: </label>
-        @Html.TextBoxFor(x => x.DateAndTime, new {size = 32})
-        <span asp-validation-for="DateAndTime" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-            <label class="control-label">Role: </label>
-            @Html.DropDownListFor(x => x.RecordStatus,
-                new SelectList(Enum.GetNames(typeof(RecordStatus))))
-        </div>
 
-</form>
-<input type="submit" value="Edit">
+    
+</div>
 </body>
 </html>

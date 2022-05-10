@@ -6,17 +6,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+     <link rel="stylesheet" href="~/css/RecordDetails.css" />
 </head>
 <body>
-    <div>
-        <form form asp-controller="Record" asp-action="Details" class="login-item">
-            <h2>Record Info</h2>
-            <p> User Id: @Html.ViewData.Model.UserId</p>
-            <p> Department: @Html.ViewData.Model.Department</p>
-            <p> Employee Id: @Html.ViewData.Model.EmployeeId</p>
-            <p> Date And Time: @Html.ViewData.Model.DateAndTime</p>
-            <p> Record Status: @Html.ViewData.Model.RecordStatus</p>
+<div>
+    <div class="details-row">
+    <div class="details-item">
+        <h1 class="title">Meddical</h1>
+        <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
+    </div>
+        <form asp-controller="Record" asp-action="Details" class="login-item">
+            <div class="form-group">
+                <label class="control-label">Record Id: </label>
+                
+                @Html.TextBoxFor(x => x.Id, new {size = 32})
+            </div>
+        
+
+            <p class="form-group"> User Id: @Html.ViewData.Model.UserId</p>
+            <p class="form-group"> Department: @Html.ViewData.Model.Department</p>
+            <p class="form-group"> Employee Id: @Html.ViewData.Model.EmployeeId</p>
+            <p class="form-group"> Date And Time: @Html.ViewData.Model.DateAndTime</p>
+            <p class="form-group"> Record Status: @Html.ViewData.Model.RecordStatus</p>
+            <input class="button" type="submit" value="Search">
         </form>
     </div>
+</div>
 </body>
 </html>

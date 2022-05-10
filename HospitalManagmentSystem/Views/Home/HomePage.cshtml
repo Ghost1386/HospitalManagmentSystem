@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,12 +12,9 @@
 </head>
 <body>
 <form>
-    
 </form>
-
-    <header class="header">
-
-        <div class="header__row">
+<header class="header">
+    <div class="header__row">
             <h1>Med<span>dical</span></h1>
             <div class="header__info">
                 <div class="info__item">
@@ -30,6 +29,13 @@
                     <img src="./img/loc-icon.svg" alt="#" />
                     <p class="info__item-text">0123 Some Place</p>
                 </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="info__item">
+                        <img src="./img/exit-icon.png" alt="#" />
+                        <a class="info__item-text" asp-area="" asp-controller="Authentication" asp-action="LogOut">Logout</a>
+                    </div>
+                }
             </div>
         </div>
 
@@ -40,16 +46,41 @@
                     <li class="menu__item"><a href="#about">About us</a></li>
                     <li class="menu__item"><a href="#doctors">Doctors</a></li>
                     <li class="menu__item"><a href="#contacts">Contact</a></li>
-                    <li class="menu__item"> <div class="dropdown">
-                        <button class="dropbtn"><a>Record</a></button>
-                        <div class="dropdown-content">
-                            <a asp-area="" asp-controller="Record" asp-action="Create" method="post">Create</a>
-                            <a asp-area="" asp-controller="Record" asp-action="Edit">Edit</a>
-                            <a asp-area="" asp-controller="Record" asp-action="Details">Delete</a>
-                        </div>
+                    <li class="menu__item"><div class="dropdown">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <button class="dropbtn"><a>Record</a></button>
+                            <div class="dropdown-content">
+                                @if (User.IsInRole(("Employee")) || User.IsInRole(("Patient")))
+                                {
+                                    <a asp-area="" asp-controller="Record" asp-action="Create">Create</a>
+                                    <a asp-area="" asp-controller="Record" asp-action="Details">Details</a>
+                                }
+                                @if (User.IsInRole("Employee"))
+                                {
+                                    <a asp-area="" asp-controller="Record" asp-action="Delete">Delete</a>
+                                    <a asp-area="" asp-controller="Record" asp-action="Edit">Edit</a>
+                                }
+                                @if (User.IsInRole("Patient"))
+                                {
+                                    <a asp-area="" asp-controller="Record" asp-action="GetPatientId">You record</a>
+                                }
+                                @if (User.IsInRole("Employee"))
+                                {
+                                    <a asp-area="" asp-controller="Record" asp-action="GetEmployeeId">You record</a>
+                                }
+                            </div>
+                        }
                     </div></li>
                     <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Login">Login</a></li>
                     <li class="menu__item"><a asp-area="" asp-controller="Authentication" asp-action="Registration">Registration</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("Employee"))
+                        {
+                            <li class="menu__item"><a asp-area="" asp-controller="Employee" asp-action="Create">New employee</a></li>
+                        }
+                    }
                 </ul>
                
             </div>

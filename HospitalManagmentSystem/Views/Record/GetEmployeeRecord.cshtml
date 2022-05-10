@@ -1,0 +1,39 @@
+﻿@using HospitalManagmentSystem.Common.Enums;
+@using HospitalManagmentSystem.Common.Models;
+@model IEnumerable<Record>;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/GetRecord.css" />
+</head>
+<body>
+
+   <table class="table">
+       <tr>
+           <th>Id</th>
+           <th>User Id</th>
+           <th>Department</th>
+           <th>Employee Id</th>
+           <th>Date</th>
+           <th>Record Status</th>
+       </tr>
+       @foreach (var item in Model)
+       {
+           <tr>
+               <td>@Html.DisplayFor(modelItem => item.Id)</td>
+               <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+               <td>@((Department) item.Department)</td>
+               <td>@Html.DisplayFor(modelItem => item.EmployeeId)</td>
+               <td>@Html.DisplayFor(modelItem => item.DateAndTime)</td>
+               <td>@((RecordStatus) item.RecordStatus)</td>
+           </tr>
+       }
+   </table> 
+
+
+</body>
+</html>

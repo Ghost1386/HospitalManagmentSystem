@@ -1,0 +1,29 @@
+@model HospitalManagmentSystem.ViewModels.RecordViewModel;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/GetId.css" />
+</head>
+<body>
+<div class="get-row">
+    <div class="get-item">
+        <h1 class="title">Meddical</h1>
+        <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
+    </div>
+    <div class="form-row">
+        <form asp-controller="Record" asp-action="GetPatientId" method="post">
+            <div class="form-group">
+                <label class="control-label">User Id: </label>
+                @Html.TextBoxFor(x => x.Id, new {size = 32})
+            </div>
+            
+            <input class="button" type="submit" value="Search">
+        </form>
+    </div>
+</div>
+</body>
+</html>

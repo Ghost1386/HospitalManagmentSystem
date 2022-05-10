@@ -1,9 +1,8 @@
-﻿using System;
-using System.Globalization;
-using HospitalManagmentSystem.BusinessLogic.Interfaces;
+﻿using HospitalManagmentSystem.BusinessLogic.Interfaces;
+using HospitalManagmentSystem.BusinessLogic.Services;
+using HospitalManagmentSystem.Common.Enums;
 using HospitalManagmentSystem.Common.Models;
 using HospitalManagmentSystem.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagmentSystem.Controllers
@@ -12,15 +11,47 @@ namespace HospitalManagmentSystem.Controllers
     {
         private readonly IRecordService _recordService;
 
+        public static int UserRecordId;
+        
+        public static int EmployeeRecordId;
+
         public RecordController(IRecordService recordService)
         {
             _recordService = recordService;
         }
+
+        public IActionResult GetPatientId()
+        {
+            return View();
+        }
         
         [HttpPost]
-        public IActionResult Index()
+        public IActionResult GetPatientId(int id)
         {
-            return View(_recordService.GetRecord());
+            UserRecordId = id;
+            return RedirectToAction("GetPatientRecord", "Record");
+        }
+        
+        public IActionResult GetPatientRecord()
+        {
+            return View(_recordService.GetPatientRecord(UserRecordId));
+        }
+        
+        public IActionResult GetEmployeeId()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult GetEmployeeId(int id)
+        {
+            EmployeeRecordId = id;
+            return RedirectToAction("GetEmployeeRecord", "Record");
+        }
+        
+        public IActionResult GetEmployeeRecord()
+        {
+            return View(_recordService.GetEmployeeRecord(EmployeeRecordId));
         }
         
         public IActionResult Create()
@@ -32,71 +63,61 @@ namespace HospitalManagmentSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(RecordViewModel recordViewModel)
         {
-            if (ModelState.IsValid)
+            _recordService.Create(new Record()
             {
-                _recordService.Create(new Record()
-                {
-                    UserId = recordViewModel.UserId,
-                    Department = recordViewModel.Department,
-                    EmployeeId = recordViewModel.EmployeeId,
-                    DateAndTime = Convert.ToDateTime(recordViewModel.DateAndTime),
-                    RecordStatus = Convert.ToInt32(recordViewModel.RecordStatus)
-                });
+                UserId = recordViewModel.UserId,
+                Department = (int)recordViewModel.Department,
+                EmployeeId = recordViewModel.EmployeeId,
+                DateAndTime = recordViewModel.DateAndTime,
+                RecordStatus = (int)recordViewModel.RecordStatus
+            });
 
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View(recordViewModel);
+           return RedirectToAction("HomePage", "Home");      
         }
 
         public IActionResult Edit(int id)
         {
             Record record = _recordService.Get(id);
 
+            RecordService.RecordId = record.Id;
+
             return View(new RecordViewModel()
             {
                 UserId = record.UserId,
-                Department = record.Department,
+                Department = (Department)record.Department,
                 EmployeeId = record.EmployeeId,
-                DateAndTime = record.DateAndTime.ToString(CultureInfo.CurrentCulture),
-                RecordStatus = record.RecordStatus
+                DateAndTime = record.DateAndTime,
+                RecordStatus = (RecordStatus)record.RecordStatus
             });
+        }
+
+        [HttpPost]
+        public IActionResult Edit(RecordViewModel recordViewModel)
+        {
+            _recordService.Edit(new Record()
+            {
+                Id = RecordService.RecordId,
+                UserId = recordViewModel.UserId,
+                Department = (int)recordViewModel.Department,
+                EmployeeId = recordViewModel.EmployeeId,
+                DateAndTime = recordViewModel.DateAndTime,
+                RecordStatus = (int)recordViewModel.RecordStatus
+            });
+
+            return RedirectToAction("HomePage", "Home");
+        }
+        
+        public IActionResult Delete()
+        {
+            return View();
         }
         
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(RecordViewModel recordViewModel, int id)
-        {
-            if (ModelState.IsValid)
-            {
-                _recordService.Edit(new Record()
-                {
-                    Id = id,
-                    UserId = recordViewModel.UserId,
-                    Department = recordViewModel.Department,
-                    EmployeeId = recordViewModel.EmployeeId,
-                    DateAndTime = Convert.ToDateTime(recordViewModel.DateAndTime),
-                    RecordStatus = recordViewModel.RecordStatus
-                });
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            try
-            {
-                return View(recordViewModel);
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         public IActionResult Delete(int id)
         {
             _recordService.Delete(id);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("HomePage", "Home");
         }
         
         public IActionResult Details(int id)
@@ -106,10 +127,10 @@ namespace HospitalManagmentSystem.Controllers
             return View(new RecordViewModel()
             {
                 UserId = record.UserId,
-                Department = record.Department,
+                Department = (Department)record.Department,
                 EmployeeId = record.EmployeeId,
-                DateAndTime = record.DateAndTime.ToString(CultureInfo.CurrentCulture),
-                RecordStatus = record.RecordStatus
+                DateAndTime = record.DateAndTime,
+                RecordStatus = (RecordStatus)record.RecordStatus
             });
         }
     }

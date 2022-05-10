@@ -14,18 +14,18 @@
     <h1 class="title">Meddical</h1>
     <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
 </div>
-        <form form asp-controller="Record" asp-action="Create" method="post">
-                    <div class="form-group">
-                        <label class="control-label">UserId: </label>
-                        @Html.TextBoxFor(x => x.UserId, new { size = 32 })
-                        <span asp-validation-for="UserId" class="text-danger"></span>
-                    </div>
+        <form asp-controller="Record" asp-action="Create" method="post">
+            <div class="form-group">
+                <label class="control-label">UserId: </label>
+                @Html.TextBoxFor(x => x.UserId, new { size = 32 })
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
             
-                    <div class="form-group">
-                        <label class="control-label">Department: </label>
-                        @Html.TextBoxFor(x => x.Department, new { size = 32 })
-                        <span asp-validation-for="Department" class="text-danger"></span>
-                    </div>
+            <div class="form-group">
+                                    <label class="control-label">Department: </label>
+                                    @Html.DropDownListFor(x => x.Department, 
+                                    new SelectList(Enum.GetNames(typeof(Department))))
+                                </div>
             
                     <div class="form-group">
                         <label class="control-label">EmployeeId: </label>

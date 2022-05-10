@@ -2,7 +2,6 @@
 using HospitalManagmentSystem.Common.Models;
 using HospitalManagmentSystem.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace HospitalManagmentSystem.Controllers
 {
@@ -17,51 +16,21 @@ namespace HospitalManagmentSystem.Controllers
 
         public IActionResult Create()
         {
-            return View(new EmployeeViewModel());
+            return View();
         }
         
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(EmployeeViewModel employeeViewModel)
         {
-            if (ModelState.IsValid)
+            _employeeService.Create(new Employee()
             {
-                _employeeService.Create(new Employee()
-                {
-                    Name = employeeViewModel.Name,
-                    SurName = employeeViewModel.SurName,
-                    PhoneNumber = employeeViewModel.PhoneNumber,
-                    Department = employeeViewModel.Department
-                });
+                Name = employeeViewModel.Name,
+                SurName = employeeViewModel.SurName,
+                PhoneNumber = employeeViewModel.PhoneNumber,
+                Department = (int)employeeViewModel.Department
+            });
 
-                return RedirectToAction(nameof(Index));
-            }
-            
-            return View(employeeViewModel);
-        }
-        
-        public IActionResult Index()
-        {
-            List<EmployeeViewModel> employeeViewModel = new List<EmployeeViewModel>();
-            
-            if (ModelState.IsValid)
-            {
-                foreach (Employee employee in _employeeService.GetEmployees())
-                {
-                    employeeViewModel.Add(new EmployeeViewModel
-                    {
-                        Id = employee.Id,
-                        Name = employee.Name,
-                        SurName = employee.SurName,
-                        PhoneNumber = employee.PhoneNumber,
-                        Department = employee.Department
-                    });
-                }
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View();
+            return RedirectToAction("HomePage", "Home");
         }
     }
 }

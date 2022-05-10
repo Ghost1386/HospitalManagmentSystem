@@ -10,6 +10,6 @@
 
         public string PhoneNumber { get; set; }
 
-        public string Department { get; set; }
+        public int Department { get; set; }
     }
 }

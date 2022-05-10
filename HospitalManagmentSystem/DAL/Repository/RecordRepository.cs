@@ -16,16 +16,22 @@ namespace HospitalManagmentSystem.DAL.Repository
             _connectionSettings = connectionSettings;
         }
 
-        public IEnumerable<Record> GetRecord()
+        public IEnumerable<Record> GetPatientRecord(int id)
         {
             List<Record> records = new List<Record>();
 
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
-                var query = "SELECT * FROM Records";
-
+                var query =
+                    "SELECT * FROM Records WHERE UserId = @Id";
+                
                 var command = new SqlCommand(query, connection);
-
+                
+                command.Parameters.Add(new SqlParameter("Id", SqlDbType.Int)
+                {
+                    Value = id
+                });
+                
                 command.Connection.Open();
 
                 using (var reader = command.ExecuteReader())
@@ -34,19 +40,60 @@ namespace HospitalManagmentSystem.DAL.Repository
                     {
                         while (reader.Read())
                         {
-                            records.Add(new Record
+                            records.Add(new Record() 
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 UserId = Convert.ToInt32(reader["UserId"]),
-                                Department = reader["Department"].ToString(),
+                                Department = Convert.ToInt32(reader["Department"]),
                                 EmployeeId = Convert.ToInt32(reader["EmployeeId"]),
-                                DateAndTime = (DateTime)(reader["DateAndTime"]),
+                                DateAndTime = reader["DateAndTime"].ToString(),
                                 RecordStatus = Convert.ToInt32(reader["RecordStatus"]),
                             });
                         }
                     }
                 }
+                
+                return records;
+            }
+        }
 
+        public IEnumerable<Record> GetEmployeeRecord(int id)
+        {
+            List<Record> records = new List<Record>();
+
+            using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
+            {
+                var query =
+                    "SELECT * FROM Records WHERE EmployeeId = @Id";
+                
+                var command = new SqlCommand(query, connection);
+                
+                command.Parameters.Add(new SqlParameter("Id", SqlDbType.Int)
+                {
+                    Value = id
+                });
+                
+                command.Connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            records.Add(new Record() 
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                UserId = Convert.ToInt32(reader["UserId"]),
+                                Department = Convert.ToInt32(reader["Department"]),
+                                EmployeeId = Convert.ToInt32(reader["EmployeeId"]),
+                                DateAndTime = reader["DateAndTime"].ToString(),
+                                RecordStatus = Convert.ToInt32(reader["RecordStatus"]),
+                            });
+                        }
+                    }
+                }
+                
                 return records;
             }
         }
@@ -77,9 +124,9 @@ namespace HospitalManagmentSystem.DAL.Repository
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 UserId = Convert.ToInt32(reader["UserId"]),
-                                Department = reader["Department"].ToString(),
+                                Department = Convert.ToInt32(reader["Department"]),
                                 EmployeeId = Convert.ToInt32(reader["EmployeeId"]),
-                                DateAndTime = (DateTime)(reader["DateAndTime"]),
+                                DateAndTime = reader["DateAndTime"].ToString(),
                                 RecordStatus = Convert.ToInt32(reader["RecordStatus"]),
                             };
                         }
@@ -115,7 +162,7 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "INSERT INTO Records (Email, Login, Password, Role) VALUES (@Email, @Login, @Password, @Role)";
+                    "INSERT INTO Records (UserId, Department, EmployeeId, DateAndTime, RecordStatus) VALUES (@UserId, @Department, @EmployeeId, @DateAndTime, @RecordStatus)";
 
                 var command = new SqlCommand(query, connection);
 
@@ -124,14 +171,14 @@ namespace HospitalManagmentSystem.DAL.Repository
                     Value = record.UserId
                 });
 
-                command.Parameters.AddWithValue("Department", record.Department);
+                command.Parameters.AddWithValue("Department", SqlDbType.Int);
 
                 command.Parameters.Add(new SqlParameter("EmployeeId", SqlDbType.Int)
                 {
                     Value = record.EmployeeId
                 });
 
-                command.Parameters.Add(new SqlParameter("DateAndTime", SqlDbType.DateTime)
+                command.Parameters.Add(new SqlParameter("DateAndTime", SqlDbType.NVarChar)
                 {
                     Value = record.DateAndTime
                 });
@@ -152,7 +199,8 @@ namespace HospitalManagmentSystem.DAL.Repository
             using (var connection = new SqlConnection(_connectionSettings.ConnectionStr))
             {
                 var query =
-                    "UPDATE Records SET Email=@Email, Login=@Login, Role=@Role WHERE Id=@Id";
+                    "UPDATE Records SET UserId=@UserId, Department=@Department, EmployeeId=@EmployeeId, " +
+                    "DateAndTime=@DateAndTime, RecordStatus= @RecordStatus WHERE Id=@Id";
 
                 var command = new SqlCommand(query, connection);
 
@@ -173,7 +221,7 @@ namespace HospitalManagmentSystem.DAL.Repository
                     Value = record.EmployeeId
                 });
 
-                command.Parameters.Add(new SqlParameter("DateAndTime", SqlDbType.DateTime)
+                command.Parameters.Add(new SqlParameter("DateAndTime", SqlDbType.NVarChar)
                 {
                     Value = record.DateAndTime
                 });

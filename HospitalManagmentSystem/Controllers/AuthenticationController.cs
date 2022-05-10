@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HospitalManagmentSystem.Controllers
+namespace HospitalManagementSystem.Controllers
 {
     public class AuthenticationController : Controller
     {
@@ -70,7 +70,7 @@ namespace HospitalManagmentSystem.Controllers
                 Email = userViewModel.Email,
                 Login = userViewModel.Login,
                 Password = userViewModel.Password,
-                Role = 0
+                Role = (int)userViewModel.Role
             });
 
             return RedirectToAction(nameof(Login));

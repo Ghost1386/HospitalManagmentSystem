@@ -5,8 +5,10 @@ namespace HospitalManagmentSystem.DAL.Interfaces
 {
     public interface IRecordRepository
     {
-        IEnumerable<Record> GetRecord();
+        IEnumerable<Record> GetPatientRecord(int id);
 
+        IEnumerable<Record> GetEmployeeRecord(int id);
+        
         Record Get(int id);
 
         void Delete(int id);

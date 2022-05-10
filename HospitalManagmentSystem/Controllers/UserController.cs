@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Visitor")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;

@@ -5,7 +5,9 @@ namespace HospitalManagmentSystem.BusinessLogic.Interfaces
 {
     public interface IRecordService
     {
-        IEnumerable<Record> GetRecord();
+        IEnumerable<Record> GetPatientRecord(int id);
+
+        IEnumerable<Record> GetEmployeeRecord(int id);
 
         Record Get(int id);
 

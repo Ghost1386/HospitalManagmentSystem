@@ -7,6 +7,8 @@ namespace HospitalManagmentSystem.BusinessLogic.Services
 {
     public class RecordService : IRecordService
     {
+        public static int RecordId;
+
         private readonly IRecordRepository _recordRepository;
 
         public RecordService(IRecordRepository recordRepository)
@@ -14,13 +16,18 @@ namespace HospitalManagmentSystem.BusinessLogic.Services
             _recordRepository = recordRepository;
         }
 
-        public IEnumerable<Record> GetRecord()
+        public IEnumerable<Record> GetPatientRecord(int id)
         {
-            return _recordRepository.GetRecord();
+            return _recordRepository.GetPatientRecord(id);
+        }
+
+        public IEnumerable<Record> GetEmployeeRecord(int id)
+        {
+            return _recordRepository.GetEmployeeRecord(id);
         }
 
         public Record Get(int id)
-        {
+        {   
             return _recordRepository.Get(id);
         }
 

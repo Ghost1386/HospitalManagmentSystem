@@ -1,16 +1,44 @@
-﻿<!DOCTYPE html>
-@{
-    ViewBag.Title = "title";
-}
+﻿@using HospitalManagmentSystem.Common.Enums
+@model HospitalManagmentSystem.ViewModels.EmployeeViewModel;
 
-<html lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/EmployCreate.css" />
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div class="create-row">
+        <div class="create-item">
+    <h1 class="title">Meddical</h1>
+    <p class="subtitle">© 2022 Hospital’s name All Rights Reserved by Egor Novik</p>
+</div>
+        <form asp-controller="Employee" asp-action="Create" method="post">
+            
+            <div class="form-group">
+                <label class="control-label">Name: </label>
+                @Html.TextBoxFor(x => x.Name, new {size = 32})
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">SurName: </label>
+                @Html.TextBoxFor(x => x.SurName, new {size = 32})
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Phone Number: </label>
+                @Html.TextBoxFor(x => x.PhoneNumber, new {size = 28})
+            </div>
+
+            <div class="form-group">
+                 <label class="control-label">Department: </label>
+                 @Html.DropDownListFor(x => x.Department, 
+                 new SelectList(Enum.GetNames(typeof(Department))))
+            </div>
+
+            <input class="button" type="submit" value="Create">
+        </form>
     </div>
 </body>
 </html>

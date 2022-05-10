@@ -1,0 +1,91 @@
+﻿html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+ul[class],
+ol[class] {
+    padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    color: inherit;
+    padding: 0;
+}
+
+input:focus,
+button:focus {
+    outline: none;
+}
+
+button,
+input[type="submit"] {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-image: url(../img/record-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+table {
+    border: #159EEC 2px solid ;
+    margin: 50px auto auto auto;
+    background-color: #FFFFFF;
+}
+
+th {
+    border-bottom: #159EEC 2px dashed ;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+

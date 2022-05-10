@@ -14,21 +14,6 @@ namespace HospitalManagmentSystem.BusinessLogic.Services
             _employeeRepository = employeeRepository;
         }
 
-        public IEnumerable<Employee> GetEmployees()
-        {
-            return _employeeRepository.GetEmployees();
-        }
-
-        public Employee Get(int id)
-        {
-            return _employeeRepository.Get(id);
-        }
-
-        public void Delete(int id)
-        {
-            _employeeRepository.Delete(id);
-        }
-
         public void Create(Employee employee)
         {
             _employeeRepository.Create(employee);

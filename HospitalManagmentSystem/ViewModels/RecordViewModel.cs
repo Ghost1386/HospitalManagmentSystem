@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using HospitalManagmentSystem.Common.Enums;
 
@@ -8,28 +9,14 @@ namespace HospitalManagmentSystem.ViewModels
     {
         public int Id { get; set; }
 
-        [Required]
-        [MinLength(0)]
-        [StringLength(10)]
         public int UserId { get; set; }
 
-        [Required]
-        [MinLength(5)]
-        [StringLength(20)]
-        public string Department { get; set; }
-
-        [Required]
-        [MinLength(0)]
-        [StringLength(10)]
+        public Department Department { get; set; }
+        
         public int EmployeeId { get; set; }
-
-        [Required]
-        [DataType(DataType.DateTime)]
-        [MinLength(0)]
-        [StringLength(10)]
+        
         public string DateAndTime { get; set; }
-
-        [Required]
-        public int RecordStatus { get; set; }
+        
+        public RecordStatus RecordStatus { get; set; }
     }
 }

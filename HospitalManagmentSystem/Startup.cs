@@ -21,15 +21,15 @@ namespace HospitalManagmentSystem
         public void ConfigureServices(IServiceCollection services)
         {
             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(Configuration,"Serilog").CreateLogger();
-            
+
             services.AddSingleton(Log.Logger);
 
             services.AddConnectionSettings(Configuration);
 
             services.AddIService();
-            
+
             services.AddIRepository();
-            
+
             services.AddControllersWithViews();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
@@ -39,9 +39,9 @@ namespace HospitalManagmentSystem
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseHttpsRedirection();
-            
+
             app.UseStaticFiles();
-            
+
             app.UseAuthentication();
 
             app.UseRouting();
